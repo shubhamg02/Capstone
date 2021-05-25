@@ -8,6 +8,7 @@ import 'package:skype_clone/resources/auth_methods.dart';
 import 'package:skype_clone/screens/home_screen.dart';
 import 'package:skype_clone/screens/login_screen.dart';
 import 'package:skype_clone/screens/search_screen.dart';
+import 'package:skype_clone/provider/translate_provider.dart';
 
 
 void main() => runApp(MyApp());
@@ -26,6 +27,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider(create: (_) => ImageUploadProvider()),
         ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => TranslateProvider()),
       ],
       child: MaterialApp(
         title: "Speakotron",

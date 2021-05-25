@@ -10,6 +10,7 @@ import 'package:skype_clone/screens/callscreens/pickup/pickup_layout.dart';
 import 'package:skype_clone/screens/pageviews/chats/chat_list_screen.dart';
 import 'package:skype_clone/screens/pageviews/logs/log_screen.dart';
 import 'package:skype_clone/utils/universal_variables.dart';
+import 'package:skype_clone/screens/pageviews/Translator/conversation_page.dart';
 
 
 class  HomeScreen extends StatefulWidget {
@@ -119,6 +120,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
               "Contact Screen",
               style: TextStyle(color: Colors.white),
             )),
+            ConversationPage(),
 
           ],
           controller: pageController,
