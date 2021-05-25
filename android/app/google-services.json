@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "603141196406",
+    "project_id": "speakotron",
+    "storage_bucket": "speakotron.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603141196406:android:064e97f8388020f5122d57",
+        "android_client_info": {
+          "package_name": "com.example.Speakotron"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603141196406-6pk2adhf3grejri4hpkg24cl3m0jkdaf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.Speakotron",
+            "certificate_hash": "ea11cf2a16734552f1b20b781c3ff39f93dbd1b7"
+          }
+        },
+        {
+          "client_id": "603141196406-qia418olflbka58k6lijao1p7sclmstu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBF-MJ1OUX_nf8AOT6cPWoKHbWZKOkXwRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603141196406-qia418olflbka58k6lijao1p7sclmstu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
