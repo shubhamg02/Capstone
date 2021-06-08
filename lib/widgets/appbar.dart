@@ -3,7 +3,7 @@ import 'package:skype_clone/utils/universal_variables.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
 
-  final Widget title;
+  final  title;
   final List<Widget> actions;
   final Widget leading;
   final bool centerTitle;
@@ -36,7 +36,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
         leading: leading,
         actions: actions,
         centerTitle: centerTitle,
-        title: title,
+        title: (title is String)
+            ? Text(
+          title,
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        )
+            : title,
       ),
     );
   }

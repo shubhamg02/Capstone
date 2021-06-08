@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skype_clone/screens/callscreens/pickup/pickup_layout.dart';
 import 'package:skype_clone/screens/pageviews/logs/widgets/floating_column.dart';
 import 'package:skype_clone/utils/universal_variables.dart';
-import 'package:skype_clone/widgets/skype_appbar.dart';
+import 'package:skype_clone/widgets/appbar.dart';
 
 import 'widgets/log_list_container.dart';
 
@@ -12,8 +12,15 @@ class LogScreen extends StatelessWidget {
     return PickupLayout(
       scaffold: Scaffold(
         backgroundColor: UniversalVariables.blackColor,
-        appBar: SkypeAppBar(
-          title: "Calls",
+        appBar: CustomAppBar(
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
+            onPressed: () => Navigator.maybePop(context),
+          ),
+          title: "Logs",
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -24,7 +31,7 @@ class LogScreen extends StatelessWidget {
             ),
           ],
         ),
-        floatingActionButton: FloatingColumn(),
+
         body: Padding(
           padding: EdgeInsets.only(left: 15),
           child: LogListContainer(),

@@ -1,10 +1,12 @@
+import 'dart:convert';
 import 'dart:io';
-
+import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emoji_picker/emoji_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:skype_clone/configs/firebase_configs.dart';
 import 'package:skype_clone/constants/strings.dart';
 import 'package:skype_clone/enum/view_state.dart';
 import 'package:skype_clone/models/message.dart';
@@ -238,6 +240,36 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
+  Future<http.Response> sendNotification(
+      String message, String sender, String receiver) {
+    print("Firebase Token: " + receiver);
+    return http.post(
+      'https://fcm.googleapis.com/fcm/send',
+      headers: <String, String>{
+        'Authorization': 'key=$SERVER_KEY',
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        // "message": {
+        "to": "$receiver",
+        "collapse_key": "type_a",
+        "priority": "high",
+        "notification": {
+          "title": "$sender",
+          "body": "$message",
+        },
+        "data": {
+          "title": "$sender",
+          "body": "$message",
+          "sound": "default",
+          "click_action": "FLUTTER_NOTIFICATION_CLICK",
+        }
+        // }
+      }),
+    );
+  }
+
+
   Widget chatControls() {
     setWritingTo(bool val) {
       setState(() {
@@ -334,6 +366,8 @@ class _ChatScreenState extends State<ChatScreen> {
       textFieldController.text = "";
 
       _chatMethods.addMessageToDb(_message);
+      sendNotification(_message.message.toString(), sender.name.toString(),
+          widget.receiver.firebaseToken.toString());
     }
 
     return Container(
@@ -470,6 +504,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       from: sender,
                       to: widget.receiver,
                       context: context,
+                      callis: "video"
                     )
                   : {},
         ),
@@ -478,11 +513,12 @@ class _ChatScreenState extends State<ChatScreen> {
             Icons.phone,
           ),
           onPressed: () async =>
-          await Permissions.cameraAndMicrophonePermissionsGranted()
-              ? CallUtils.dial(
+          await Permissions.microphonePermissionsGranted()
+              ? CallUtils.dialVoice(
             from: sender,
             to: widget.receiver,
             context: context,
+              callis: "audio"
           )
               : {},
         )

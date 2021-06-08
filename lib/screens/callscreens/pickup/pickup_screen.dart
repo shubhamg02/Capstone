@@ -7,9 +7,11 @@ import 'package:skype_clone/resources/local_db/repository/log_repository.dart';
 import 'package:skype_clone/screens/callscreens/call_screen.dart';
 import 'package:skype_clone/screens/chatscreens/widgets/cached_image.dart';
 import 'package:skype_clone/utils/permissions.dart';
+import 'package:skype_clone/screens/callscreens/voice_call.dart';
 
 class PickupScreen extends StatefulWidget {
   final Call call;
+
 
   PickupScreen({
     @required this.call,
@@ -93,9 +95,9 @@ class _PickupScreenState extends State<PickupScreen> {
                 IconButton(
                     icon: Icon(Icons.call),
                     color: Colors.green,
-                    onPressed: () async {
-                      isCallMissed = false;
-                      addToLocalStorage(callStatus: CALL_STATUS_RECEIVED);
+                    onPressed: () async => widget.call.isCall == "video" ?
+
+
                       await Permissions.cameraAndMicrophonePermissionsGranted()
                           ? Navigator.push(
                               context,
@@ -104,8 +106,17 @@ class _PickupScreenState extends State<PickupScreen> {
                                     CallScreen(call: widget.call),
                               ),
                             )
-                          : {};
-                    }),
+                          : {}
+                        : await Permissions.microphonePermissionsGranted()
+                            ? Navigator.push(
+                                  context,
+                               MaterialPageRoute(
+                                       builder: (context) =>
+                                          VoiceCallScreen(call: widget.call),
+                                                    ),
+                                            )
+                                            : {},
+                    ),
               ],
             ),
           ],

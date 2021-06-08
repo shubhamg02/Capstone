@@ -7,11 +7,15 @@ import 'home_screen.dart';
 import 'package:skype_clone/screens/pageviews/Translator/conversation_page.dart';
 
 class LoginScreen extends StatefulWidget {
+  final String token;
+  LoginScreen({Key key, this.token}) : super(key: key);
   @override
-  LoginScreenState createState() => LoginScreenState();
+  LoginScreenState createState() => LoginScreenState(this.token);
 }
 
 class LoginScreenState extends State<LoginScreen> {
+  String token;
+  LoginScreenState(this.token);
   final AuthMethods _authMethods = AuthMethods();
 
   bool isLoginPressed = false;
@@ -61,21 +65,21 @@ class LoginScreenState extends State<LoginScreen> {
     FirebaseUser user = await _authMethods.signIn();
 
     if (user != null) {
-      authenticateUser(user);
+      authenticateUser(user,token);
     }
     setState(() {
       isLoginPressed = false;
     });
   }
 
-  void authenticateUser(FirebaseUser user) {
+  void authenticateUser(FirebaseUser user,String token) {
     _authMethods.authenticateUser(user).then((isNewUser) {
       setState(() {
         isLoginPressed = false;
       });
 
       if (isNewUser) {
-        _authMethods.addDataToDb(user).then((value) {
+        _authMethods.addDataToDb(user,token).then((value) {
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) {
             return HomeScreen();

@@ -10,6 +10,8 @@ import 'package:skype_clone/screens/pageviews/chats/widgets/quiet_box.dart';
 import 'package:skype_clone/screens/pageviews/chats/widgets/user_circle.dart';
 import 'package:skype_clone/utils/universal_variables.dart';
 import 'package:skype_clone/widgets/skype_appbar.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:skype_clone/screens/pageviews/logs/log_screen.dart';
 
 import 'widgets/new_chat_button.dart';
 
@@ -31,16 +33,22 @@ class ChatListScreen extends StatelessWidget {
                 Navigator.pushNamed(context, "/search_screen");
               },
             ),
-            IconButton(
-              icon: Icon(
-                Icons.more_vert,
-                color: Colors.white,
-              ),
-              onPressed: () {},
-            ),
+
           ],
         ),
-        floatingActionButton: NewChatButton(),
+
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => LogScreen(),
+              ),
+            );
+          },
+          tooltip: 'Open New Page',
+          child: Icon(Icons.call_sharp),
+        ),
         body: ChatListContainer(),
       ),
     );

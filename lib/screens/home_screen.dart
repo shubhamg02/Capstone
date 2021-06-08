@@ -11,6 +11,7 @@ import 'package:skype_clone/screens/pageviews/chats/chat_list_screen.dart';
 import 'package:skype_clone/screens/pageviews/logs/log_screen.dart';
 import 'package:skype_clone/utils/universal_variables.dart';
 import 'package:skype_clone/screens/pageviews/Translator/conversation_page.dart';
+import 'package:skype_clone/screens/pageviews/home/swipper.dart';
 
 
 class  HomeScreen extends StatefulWidget {
@@ -113,8 +114,9 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         backgroundColor: UniversalVariables.blackColor,
         body: PageView(
           children: <Widget>[
+            Swipper(),
             ChatListScreen(),
-            LogScreen(),
+
             Center(
                 child: Text(
               "Contact Screen",
@@ -134,12 +136,12 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
               backgroundColor: UniversalVariables.blackColor,
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.chat,
+                  icon: Icon(Icons.home,
                       color: (_page == 0)
                           ? UniversalVariables.lightBlueColor
                           : UniversalVariables.greyColor),
                   title: Text(
-                    "Chats",
+                    "Home",
                     style: TextStyle(
                         fontSize: _labelFontSize,
                         color: (_page == 0)
@@ -148,12 +150,12 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                   ),
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.call,
+                  icon: Icon(Icons.chat,
                       color: (_page == 1)
                           ? UniversalVariables.lightBlueColor
                           : UniversalVariables.greyColor),
                   title: Text(
-                    "Calls",
+                    "Contacts",
                     style: TextStyle(
                         fontSize: _labelFontSize,
                         color: (_page == 1)
@@ -168,7 +170,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                           ? UniversalVariables.lightBlueColor
                           : UniversalVariables.greyColor),
                   title: Text(
-                    "Contacts",
+                    "Profile",
                     style: TextStyle(
                         fontSize: _labelFontSize,
                         color: (_page == 2)
@@ -190,34 +192,8 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                             : Colors.grey),
                   ),
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.text_fields_rounded,
-                      color: (_page == 4)
-                          ? UniversalVariables.lightBlueColor
-                          : UniversalVariables.greyColor),
-                  title: Text(
-                    "TTT",
-                    style: TextStyle(
-                        fontSize: _labelFontSize,
-                        color: (_page == 4)
-                            ? UniversalVariables.lightBlueColor
-                            : Colors.grey),
-                  ),
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.record_voice_over_sharp,
-                      color: (_page == 5)
-                          ? UniversalVariables.lightBlueColor
-                          : UniversalVariables.greyColor),
-                  title: Text(
-                    "TTS",
-                    style: TextStyle(
-                        fontSize: _labelFontSize,
-                        color: (_page == 5)
-                            ? UniversalVariables.lightBlueColor
-                            : Colors.grey),
-                  ),
-                ),
+
+
               ],
               onTap: navigationTapped,
               currentIndex: _page,
